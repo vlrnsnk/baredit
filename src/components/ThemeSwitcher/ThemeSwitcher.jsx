@@ -1,6 +1,6 @@
 const ThemeSwitcher = () => {
   return (
-    <button>
+    <button className="circle">
       Light/Dark
     </button>
   );

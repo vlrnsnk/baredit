@@ -1,4 +1,5 @@
 import './App.css';
+import 'beercss';
 
 import { Header } from 'components/Header/Header';
 import { CommunityList } from 'components/CommunityList/CommunityList';
