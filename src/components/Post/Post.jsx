@@ -8,7 +8,7 @@ const Post = ({ post }) => {
       <p>author: {post.author}</p>
       <p>comments: {post.numberOfComments}</p>
       <p>ups: "{post.ups}" | downs: "{post.downs}"</p>
-      <p>comments permalink {post.commentsPermalink}</p>
+      {/* <p>comments permalink {post.commentsPermalink}</p> */}
       <p>created {post.created}</p>
     </article>
   );

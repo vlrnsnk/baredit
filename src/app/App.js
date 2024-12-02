@@ -1,5 +1,5 @@
-import './App.css';
 import 'beercss';
+import './App.css';
 
 import { Header } from 'components/Header/Header';
 import { CommunityList } from 'components/CommunityList/CommunityList';
@@ -20,7 +20,7 @@ function App() {
     { name: 'Community 3', url: 'community-url-3' },
   ];
 
-  console.log(mockPosts);
+  // console.log(mockPosts);
 
   const posts = mockPosts.data.children.map((post) => ({
     id: post.data.id,
@@ -41,8 +41,9 @@ function App() {
   return (
     <>
       <Header />
-      <CommunityList communities={communities} />
-      <PostList posts={posts} />
+      {/* <main class="responsive"></main> */}
+      {/* <CommunityList communities={communities} />
+      <PostList posts={posts} /> */}
       <Footer />
     </>
   );

@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer>
+    <footer className="responsiv">
       by <a
            href="https://github.com/vlrnsnk"
            target="_blank"

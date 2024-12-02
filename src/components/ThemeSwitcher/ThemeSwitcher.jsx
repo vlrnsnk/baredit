@@ -1,8 +1,11 @@
 const ThemeSwitcher = () => {
   return (
-    <button className="circle">
-      Light/Dark
-    </button>
+    <label className="switch icon">
+      <input type="checkbox" />
+      <span>
+        <i>dark_mode</i>
+      </span>
+    </label>
   );
 };
 
