@@ -6,7 +6,7 @@ const CommunityList = ({ communities }) => {
       {communities.length > 0 ? (
         <ul>
           {communities.map((community, index) => (
-            <li>
+            <li key={index}>
               <Community community={community} />
             </li>
           ))}
