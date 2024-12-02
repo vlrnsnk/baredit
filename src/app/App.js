@@ -1,4 +1,3 @@
-import 'beercss';
 import './App.css';
 
 import { Header } from 'components/Header/Header';
@@ -39,13 +38,12 @@ function App() {
   console.log(posts);
 
   return (
-    <>
+    <div className="bg-orange-200">
       <Header />
-      {/* <main class="responsive"></main> */}
-      {/* <CommunityList communities={communities} />
-      <PostList posts={posts} /> */}
+      <CommunityList communities={communities} />
+      <PostList posts={posts} />
       <Footer />
-    </>
+    </div>
   );
 }
 

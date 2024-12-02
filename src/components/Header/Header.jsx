@@ -4,16 +4,14 @@ import { ThemeSwitcher } from "components/ThemeSwitcher/ThemeSwitcher";
 
 const Header = () => {
   return (
-    <header className="medium padding amber5">
-      <nav className="left-align responsive">
-        <div className="horizontal">
-          <Logo />
-          <h1 className="small bold">BareDit</h1>
-          {/* <div class="max"></div> */}
-          <ThemeSwitcher />
-        </div>
-        <SearchBar />
+    <header className="flex flex-col gap-4 bg-gray-200 p-4">
+      <nav className="container mx-auto flex flex-row justify-between items-center gap-x-4">
+        <Logo />
+        <h1 className="md:me-auto text-3xl font-bold text-orange-500">BareDit</h1>
+        <ThemeSwitcher />
       </nav>
+      <hr className="bg-black size-px w-auto" />
+      <SearchBar />
     </header>
   );
 };

@@ -1,11 +1,10 @@
+import { ReactComponent as Moon } from 'assets/moon.svg';
+
 const ThemeSwitcher = () => {
   return (
-    <label className="switch icon">
-      <input type="checkbox" />
-      <span>
-        <i>dark_mode</i>
-      </span>
-    </label>
+    <button className="size-12 flex justify-center items-center">
+      <Moon />
+    </button>
   );
 };
 
