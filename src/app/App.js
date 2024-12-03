@@ -38,9 +38,9 @@ function App() {
   console.log(posts);
 
   return (
-    <div className="bg-orange-200">
+    <div className="bg-orange-400">
       <Header />
-      <CommunityList communities={communities} />
+      {/* <CommunityList communities={communities} /> */}
       <PostList posts={posts} />
       <Footer />
     </div>

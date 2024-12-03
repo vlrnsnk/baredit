@@ -1,5 +1,3 @@
-import { ReactComponent as MagnifyingGlass } from 'assets/magnifying-glass.svg';
-
 const SearchBar = () => {
   return (
     <div className="flex flex-row justify-center">
@@ -11,11 +9,6 @@ const SearchBar = () => {
         value=""
         onChange={() => {}}
       />
-      {/* <button
-        className="size-12 flex justify-center items-center"
-        type="submit">
-        <MagnifyingGlass />
-      </button> */}
     </div>
   );
 };
