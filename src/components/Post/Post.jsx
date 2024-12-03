@@ -7,7 +7,7 @@ import { ReactComponent as Slash } from 'assets/slash.svg';
 
 const Post = ({ post }) => {
   return (
-    <article className="flex flex-col gap-4 bg-gray-200 p-4 rounded-2xl mb-4">
+    <article className="flex flex-col gap-4 bg-gray-200 p-4 rounded-2xl mb-4 break-words">
       <h3 className="text-3xl font-bold">{post.title}</h3>
       <p>{post.description}</p>
       {post.thumbnail && (

@@ -6,6 +6,7 @@ import { PostList } from 'components/PostList/PostList';
 import { Footer } from 'components/Footer/Footer';
 
 import mockPosts from 'mocks/mockPosts.json';
+import { Drawer } from 'components/Drawer/Drawer';
 
 function App() {
   // const posts = [
@@ -41,6 +42,7 @@ function App() {
     <div className="bg-orange-400">
       <Header />
       {/* <CommunityList communities={communities} /> */}
+      <Drawer />
       <PostList posts={posts} />
       <Footer />
     </div>
