@@ -2,7 +2,7 @@ import './App.css';
 
 import { Header } from 'components/Header/Header';
 import { Drawer } from 'components/Drawer/Drawer';
-import { CommunityList } from 'components/CommunityList/CommunityList';
+// import { CommunityList } from 'components/CommunityList/CommunityList';
 import { PostList } from 'components/PostList/PostList';
 import { Footer } from 'components/Footer/Footer';
 
@@ -51,7 +51,7 @@ function App() {
     <div className="bg-orange-400">
       <Header />
       {/* <CommunityList communities={communities} /> */}
-      <Drawer />
+      <Drawer subreddits={subreddits} />
       <PostList posts={posts} />
       <Footer />
     </div>
