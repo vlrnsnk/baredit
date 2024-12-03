@@ -43,9 +43,9 @@ const Post = ({ post }) => {
             {post.downs}
           </p>
         </div>
-        <p className="flex gap-2 ms-aut">
-        <CommentsIcon className="text-orange-400" />
-        {post.numberOfComments}
+        <p className="flex gap-2">
+          <CommentsIcon className="text-orange-400 hover:fill-orange-400 hover:cursor-pointer" />
+          {post.numberOfComments}
         </p>
       </div>
     </article>
