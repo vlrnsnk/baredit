@@ -17,7 +17,7 @@ const Post = ({ post }) => {
           alt={post.title}
         />
       )}
-      <div className="flex flex-wrap gap-4 justify-evenly">
+      <div className="flex flex-wrap gap-4 justify-between sm:justify-evenly">
         <p className="flex gap-2">
           <UserIcon className="text-orange-400" />
           {post.author}
@@ -32,7 +32,7 @@ const Post = ({ post }) => {
           {post.created}
         </p>
       </div>
-      <div className="flex gap-4 justify-evenly">
+      <div className="flex gap-4 justify-between sm:justify-evenly">
         <div className="flex gap-4">
           <p className="flex gap-2">
             <HandThumbsUp className="text-orange-400" />
