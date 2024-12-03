@@ -1,12 +1,13 @@
 import './App.css';
 
 import { Header } from 'components/Header/Header';
+import { Drawer } from 'components/Drawer/Drawer';
 import { CommunityList } from 'components/CommunityList/CommunityList';
 import { PostList } from 'components/PostList/PostList';
 import { Footer } from 'components/Footer/Footer';
 
 import mockPosts from 'mocks/mockPosts.json';
-import { Drawer } from 'components/Drawer/Drawer';
+import mockSubreddits from 'mocks/mockSubreddits.json';
 
 function App() {
   // const posts = [
@@ -14,11 +15,11 @@ function App() {
   //   { id: 1, title: 'Post title 2', description: 'Post description 2' },
   // ];
 
-  const communities = [
-    { name: 'Community 1', url: 'community-url-1' },
-    { name: 'Community 2', url: 'community-url-2' },
-    { name: 'Community 3', url: 'community-url-3' },
-  ];
+  // const communities = [
+  //   { name: 'Community 1', url: 'community-url-1' },
+  //   { name: 'Community 2', url: 'community-url-2' },
+  //   { name: 'Community 3', url: 'community-url-3' },
+  // ];
 
   // console.log(mockPosts);
 
@@ -37,6 +38,14 @@ function App() {
     created: post.data.created_utc,
   }));
   console.log(posts);
+
+  const subreddits = mockSubreddits.data.children.map((subreddit) => ({
+    id: subreddit,
+    name: subreddit.data.display_name_prefixed,
+    members: subreddit.data.subscribers,
+    image: subreddit.data.icon_img,
+  }));
+  console.log(subreddits);
 
   return (
     <div className="bg-orange-400">

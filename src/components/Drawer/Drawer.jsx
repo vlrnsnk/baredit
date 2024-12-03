@@ -10,7 +10,7 @@ const Drawer = () => {
           <div className="relative pointer-events-none w-screen max-w-md">
             <div className="absolute left-0 top-0 -ml-8 sm:-ml-10 pt-4 pr-2 sm:pr-4 flex">
               <button
-                className="relative rounde-md text-orange-00 hover:text-red focus:outline-none focus:ring-2 focus:ring-green outline-dashed size-12 flex justify-center items-center"
+                className="relative rounded-md text-orange-00 hover:text-red focus:outline-none focus:ring-2 focus:ring-green outline-dashed size-12 flex justify-center items-center"
                 type="button"
               >
                 {/* <span className="absolute -inset-2.5"></span> */}
