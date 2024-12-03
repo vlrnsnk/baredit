@@ -2,7 +2,6 @@ import './App.css';
 
 import { Header } from 'components/Header/Header';
 import { Drawer } from 'components/Drawer/Drawer';
-// import { CommunityList } from 'components/CommunityList/CommunityList';
 import { PostList } from 'components/PostList/PostList';
 import { Footer } from 'components/Footer/Footer';
 
@@ -50,9 +49,10 @@ function App() {
   return (
     <div className="bg-orange-400">
       <Header />
-      {/* <CommunityList communities={communities} /> */}
-      <Drawer subreddits={subreddits} />
-      <PostList posts={posts} />
+      <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
+        <Drawer subreddits={subreddits} />
+        <PostList posts={posts} />
+      </div>
       <Footer />
     </div>
   );
