@@ -5,6 +5,8 @@ import { ReactComponent as HandThumbDown } from 'assets/hand-thumbs-down.svg';
 import { ReactComponent as Clock } from 'assets/clock.svg';
 import { ReactComponent as Slash } from 'assets/slash.svg';
 
+import { timeAgo } from 'utilities/helpers';
+
 const Post = ({ post }) => {
   return (
     <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 rounded-2xl mb-4 break-words">
@@ -29,7 +31,7 @@ const Post = ({ post }) => {
         {/* <p>comments permalink {post.commentsPermalink}</p> */}
         <p className="flex gap-2">
           <Clock className="text-orange-400" />
-          {post.created}
+          {timeAgo(post.created)}
         </p>
       </div>
       <div className="flex gap-4 justify-between sm:justify-evenly">
