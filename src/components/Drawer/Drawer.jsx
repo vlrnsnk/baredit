@@ -54,7 +54,7 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
         ref={overlayRef}
       ></div>
       <div
-        className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:relative`}
+        className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:translate-x-0 md:relative`}
         ref={drawerRef}
       >
         <div className="fixed inset-y-0 right-0 flex pl-10 max-w-full md:relative md:pl-0 md:mt-4">
