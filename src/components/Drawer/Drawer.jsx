@@ -61,7 +61,7 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
           <div className="relative w-screen max-w-md md:w-max">
             <div className="absolute z-20 right-0 top-1 -ml-8 sm:-ml-10 pt-4 pr-2 sm:pr-4 flex md:hidden">
               <button
-                className="relative rounded-md hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 size-10 flex justify-center items-center"
+                className="relative rounded-md hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 size-10 flex justify-center items-center dark:text-gray-200"
                 type="button"
                 onClick={handleBurgerClick}
               >
@@ -69,9 +69,9 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
                 <CloseIcon />
               </button>
             </div>
-            <div className="flex flex-col h-full overflow-y-scroll bg-white py-6 shadow-xl md:bg-gray-200 md:rounded-2xl md:me-4">
+            <div className="flex flex-col h-full overflow-y-scroll bg-white py-6 shadow-xl md:bg-gray-200 dark:bg-gray-900 dark:text-gray-200 md:rounded-2xl md:me-4">
               <div className="px-4 sm:px-6 md:-mt-2">
-                <h2 className="font-semibold text-3xl text-orange-500 ps-2 md:text-gray-900">Subreddits</h2>
+                <h2 className="font-semibold text-3xl text-orange-500 ps-2 md:text-gray-900 dark:bg-gray-900 dark:text-gray-200">Subreddits</h2>
               </div>
               <div className="relative flex-1 mt-6 px-4 sm:px-6">
                 {subreddits.length > 0 ? (
