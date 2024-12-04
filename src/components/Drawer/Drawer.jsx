@@ -15,22 +15,25 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
       }
     };
 
-    const handleClickOutside = (e) => {
-      if (
-        drawerRef.current
-        && !drawerRef.current.contains(e.target)
-        && overlayRef.current.contains(e.target)
-      ) {
-        handleBurgerClick();
-      }
-    };
+    // const handleClickOutside = (e) => {
+    //   if (
+    //     // drawerRef.current
+    //     // && !drawerRef.current.contains(e.target)
+    //     //&&
+    //     isDrawerOpen
+    //     // && !overlayRef
+    //     // && overlayRef.current.contains(e.target)
+    //   ) {
+    //     handleBurgerClick();
+    //   }
+    // };
 
     window.addEventListener('keydown', handleKeyDown);
-    window.addEventListener('click', handleClickOutside);
+    // window.addEventListener('click', handleClickOutside);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('click', handleClickOutside);
+      // window.removeEventListener('click', handleClickOutside);
     };
   }, [isDrawerOpen, handleBurgerClick]);
 
