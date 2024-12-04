@@ -3,7 +3,7 @@ import { Logo } from "components/Logo/Logo";
 import { SearchBar } from "components/SearchBar/SearchBar";
 import { ThemeSwitcher } from "components/ThemeSwitcher/ThemeSwitcher";
 
-const Header = ({ handleBurgerClick }) => {
+const Header = ({ handleBurgerClick, theme, handleThemeSwitcherClick }) => {
   return (
     <header className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200  p-4">
       <nav className="container mx-auto flex flex-row justify-between items-center sm:gap-x-4 sm:px-4 md:px-8">
@@ -14,7 +14,10 @@ const Header = ({ handleBurgerClick }) => {
         </div>
         <div className="flex sm:gap-2">
           <SearchBar />
-          <ThemeSwitcher />
+          <ThemeSwitcher
+            theme={theme}
+            handleThemeSwitcherClick={handleThemeSwitcherClick}
+          />
         </div>
       </nav>
     </header>
