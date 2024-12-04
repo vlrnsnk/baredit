@@ -12,4 +12,13 @@ const getTheme = () => {
   return localStorage.theme;
 };
 
-export { getTheme };
+const formatNumberToCommaSeparated = (number) => {
+  return `${number}`
+    .split('')
+    .reverse()
+    .map((digit, index) => index % 3 === 2 && index !== `${number}`.length - 1 ? `,${digit}` : digit)
+    .reverse()
+    .join('');
+}
+
+export { getTheme, formatNumberToCommaSeparated};

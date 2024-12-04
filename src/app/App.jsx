@@ -13,8 +13,6 @@ import { getTheme } from 'utilities/helpers';
 import './App.css';
 
 function App() {
-  console.log(getTheme());
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState(getTheme());
 

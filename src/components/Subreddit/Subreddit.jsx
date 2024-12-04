@@ -1,5 +1,7 @@
 import { ReactComponent as DefaultIcon } from 'assets/subreddit.svg';
 
+import { formatNumberToCommaSeparated } from 'utilities/helpers';
+
 const Subreddit = ({ subreddit }) => {
   return (
     <article className="cursor-pointer flex flex-row gap-3 hover:bg-orange-200 dark:hover:bg-orange-400 dark:hover:text-gray-900 p-2 rounded-full">
@@ -16,7 +18,7 @@ const Subreddit = ({ subreddit }) => {
       </div>
       <div className="flex flex-col">
         <h3>{subreddit.name}</h3>
-        <p>{subreddit.members}</p>
+        <p>{formatNumberToCommaSeparated(subreddit.members)} members</p>
       </div>
     </article>
   );
