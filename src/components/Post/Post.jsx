@@ -7,7 +7,7 @@ import { ReactComponent as Slash } from 'assets/slash.svg';
 
 import { timeAgo } from 'utilities/helpers';
 
-const Post = ({ post }) => {
+const Post = ({ post, handleCommentsButtonClick }) => {
   return (
     <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 rounded-2xl mb-4 break-words">
       <h3 className="text-3xl font-bold">{post.title}</h3>
@@ -49,7 +49,7 @@ const Post = ({ post }) => {
           <button
             className="text-orange-400 hover:cursor-pointer"
             type="button"
-            onClick={() => console.log(post.commentsPermalink) }
+            onClick={() => handleCommentsButtonClick(post.commentsPermalink)}
           >
             <CommentsIcon className="hover:fill-orange-400" />
           </button>

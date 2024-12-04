@@ -17,11 +17,8 @@ import { Comments } from 'components/Comments/Comments';
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState(getTheme());
-
-  const changeTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.theme = theme;
-  };
+  const [isShowComments, setIsShowComments] = useState(false);
+  const [comments, setComments] = useState(extractComments(mockComments));
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -34,6 +31,21 @@ function App() {
   const handleBurgerClick = () => {
     setIsDrawerOpen(!isDrawerOpen);
   }
+
+  const changeTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+    localStorage.theme = theme;
+  };
+
+  const toggleCommentsVisibility = () => {
+    setIsShowComments(!isShowComments);
+  };
+
+  const handleCommentsButtonClick = (commentsPermalink) => {
+    toggleCommentsVisibility();
+    setComments([comments[0]]);
+    console.log(commentsPermalink);
+  };
 
   const posts = mockPosts.data.children.map((post) => ({
     id: post.data.id,
@@ -59,12 +71,11 @@ function App() {
   }));
   // console.log(subreddits);
 
-  const comments = extractComments(mockComments);
-  // console.log(comments);
-
   return (
     <div className="bg-orange-400">
-      <Comments comments={comments} />
+      {isShowComments && (
+        <Comments comments={comments} handleCloseButtonClick={toggleCommentsVisibility} />
+      )}
       <Header
         handleBurgerClick={handleBurgerClick}
         theme={theme}
@@ -76,7 +87,7 @@ function App() {
           isDrawerOpen={isDrawerOpen}
           handleBurgerClick={handleBurgerClick}
         />
-        <PostList posts={posts} />
+        <PostList posts={posts} handleCommentsButtonClick={handleCommentsButtonClick} />
       </div>
       <Footer />
     </div>
