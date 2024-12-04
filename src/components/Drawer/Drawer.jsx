@@ -48,7 +48,7 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
   }, [isDrawerOpen]);
 
   return (
-    <div className="relative z-10 md:z-0">
+    <div className="relative z-20 md:z-0">
       <div
         className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isDrawerOpen ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`} md:hidden`}
         ref={overlayRef}
@@ -65,7 +65,7 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
                 type="button"
                 onClick={handleBurgerClick}
               >
-                <span className="sr-only"></span>
+                <span className="sr-only">Close Drawer</span>
                 <CloseIcon />
               </button>
             </div>

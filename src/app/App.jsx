@@ -7,10 +7,12 @@ import { Footer } from 'components/Footer/Footer';
 
 import mockPosts from 'mocks/mockPosts.json';
 import mockSubreddits from 'mocks/mockSubreddits.json';
+import mockComments from 'mocks/mockComments.json';
 
-import { getTheme } from 'utilities/helpers';
+import { extractComments, getTheme } from 'utilities/helpers';
 
 import './App.css';
+import { Comments } from 'components/Comments/Comments';
 
 function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -57,8 +59,12 @@ function App() {
   }));
   // console.log(subreddits);
 
+  const comments = extractComments(mockComments);
+  // console.log(comments);
+
   return (
     <div className="bg-orange-400">
+      <Comments comments={comments} />
       <Header
         handleBurgerClick={handleBurgerClick}
         theme={theme}

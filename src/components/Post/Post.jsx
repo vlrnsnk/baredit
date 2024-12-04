@@ -46,7 +46,13 @@ const Post = ({ post }) => {
           </p>
         </div>
         <p className="flex gap-2">
-          <CommentsIcon className="text-orange-400 hover:fill-orange-400 hover:cursor-pointer" />
+          <button
+            className="text-orange-400 hover:cursor-pointer"
+            type="button"
+            onClick={() => console.log(post.commentsPermalink) }
+          >
+            <CommentsIcon className="hover:fill-orange-400" />
+          </button>
           {post.numberOfComments}
         </p>
       </div>

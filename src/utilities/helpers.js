@@ -42,4 +42,28 @@ const timeAgo = (timestamp) => {
   }
 };
 
-export { getTheme, formatNumberToCommaSeparated, timeAgo };
+const extractComments = (json) => {
+  const comments = [];
+
+  const traverse = (obj) => {
+    if (typeof obj === 'object' && obj !== null) {
+      if (Array.isArray(obj)) {
+        obj.forEach(traverse);
+      } else {
+        Object.keys(obj).forEach(key => {
+          if (key === 'body') {
+            comments.push(obj[key]);
+          }
+
+          traverse(obj[key]);
+        });
+      }
+    }
+  };
+
+  traverse(json);
+
+  return comments;
+};
+
+export { getTheme, formatNumberToCommaSeparated, timeAgo, extractComments };
