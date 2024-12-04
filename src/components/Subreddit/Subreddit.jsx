@@ -2,7 +2,7 @@ import { ReactComponent as DefaultIcon } from 'assets/subreddit.svg';
 
 const Subreddit = ({ subreddit }) => {
   return (
-    <article className="cursor-pointer flex flex-row gap-3 hover:bg-orange-200 p-2 rounded-full">
+    <article className="cursor-pointer flex flex-row gap-3 hover:bg-orange-200 dark:hover:bg-orange-400 dark:hover:text-gray-900 p-2 rounded-full">
       <div className="flex">
         {subreddit.image !== '' ? (
           <img
