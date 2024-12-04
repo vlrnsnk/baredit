@@ -1,4 +1,4 @@
-import './App.css';
+import { useState } from 'react';
 
 import { Header } from 'components/Header/Header';
 import { Drawer } from 'components/Drawer/Drawer';
@@ -8,19 +8,15 @@ import { Footer } from 'components/Footer/Footer';
 import mockPosts from 'mocks/mockPosts.json';
 import mockSubreddits from 'mocks/mockSubreddits.json';
 
+import './App.css';
+
 function App() {
-  // const posts = [
-  //   { id: 0, title: 'Post title 1', description: 'Post description 1' },
-  //   { id: 1, title: 'Post title 2', description: 'Post description 2' },
-  // ];
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // const communities = [
-  //   { name: 'Community 1', url: 'community-url-1' },
-  //   { name: 'Community 2', url: 'community-url-2' },
-  //   { name: 'Community 3', url: 'community-url-3' },
-  // ];
-
-  // console.log(mockPosts);
+  const handleBurgerClick = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+    console.log(isDrawerOpen);
+  }
 
   const posts = mockPosts.data.children.map((post) => ({
     id: post.data.id,
@@ -48,9 +44,9 @@ function App() {
 
   return (
     <div className="bg-orange-400">
-      <Header />
+      <Header handleBurgerClick={handleBurgerClick} />
       <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
-        <Drawer subreddits={subreddits} />
+        <Drawer subreddits={subreddits} isDrawerOpen={isDrawerOpen} handleBurgerClick={handleBurgerClick} />
         <PostList posts={posts} />
       </div>
       <Footer />
