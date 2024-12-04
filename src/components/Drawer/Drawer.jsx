@@ -1,9 +1,38 @@
 import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
 import { Subreddit } from 'components/Subreddit/Subreddit';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isDrawerOpen);
+
+  const drawerRef = useRef(null);
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isDrawerOpen) {
+        handleBurgerClick();
+      }
+    };
+
+    const handleClickOutside = (e) => {
+      if (
+        drawerRef.current
+        && !drawerRef.current.contains(e.target)
+        && overlayRef.current.contains(e.target)
+      ) {
+        handleBurgerClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, [isDrawerOpen, handleBurgerClick]);
 
   useEffect(() => {
     if (isDrawerOpen) {
@@ -17,8 +46,14 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
 
   return (
     <div className="relative z-10 md:z-0">
-      <div className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isDrawerOpen ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`} md:hidden`}></div>
-      <div className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:relative`}>
+      <div
+        className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isDrawerOpen ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`} md:hidden`}
+        ref={overlayRef}
+      ></div>
+      <div
+        className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:relative`}
+        ref={drawerRef}
+      >
         <div className="fixed inset-y-0 right-0 flex pl-10 max-w-full md:relative md:pl-0 md:mt-4">
           <div className="relative w-screen max-w-md md:w-max">
             <div className="absolute z-20 right-0 top-1 -ml-8 sm:-ml-10 pt-4 pr-2 sm:pr-4 flex md:hidden">
