@@ -74,7 +74,11 @@ function App() {
   return (
     <div className="bg-orange-400">
       {isShowComments && (
-        <Comments comments={comments} handleCloseButtonClick={toggleCommentsVisibility} />
+        <Comments
+          isShowComments={isShowComments}
+          comments={comments}
+          handleCloseButtonClick={toggleCommentsVisibility}
+        />
       )}
       <Header
         handleBurgerClick={handleBurgerClick}

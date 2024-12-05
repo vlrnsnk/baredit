@@ -1,10 +1,37 @@
 import { Comment } from "components/Comment/Comment";
 import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
+import { useEffect, useState } from "react";
 
-const Comments = ({ comments = [], handleCloseButtonClick }) => {
+const Comments = ({ isShowComments, comments = [], handleCloseButtonClick }) => {
+  const [isOverlayVisible, setIsOverlayVisible] = useState(isShowComments);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Esc' && isShowComments) {
+        handleCloseButtonClick();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isShowComments, handleCloseButtonClick]);
+
+  useEffect(() => {
+    if(isShowComments) {
+      setIsOverlayVisible(true);
+    } else {
+      const timer = setTimeout(() => setIsOverlayVisible(false), 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isShowComments]);
+
   return (
     <div className="relative z-10">
-      <div className="fixed inset-0 bg-gray-200/75"></div>
+      <div className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isShowComments ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`}`}></div>
       <div className="fixed inset-0 max-w-full m-4 bg-orange-400 rounded-2xl overflow-hidden">
         <div className="relative max-w-md">
           <div className="absolute z-20 right-1 top-1">
