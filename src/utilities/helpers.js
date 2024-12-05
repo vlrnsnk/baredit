@@ -158,10 +158,33 @@ const generatePictureTag = (jsonData) => {
   );
 };
 
+const formatPosts = (postsJsonData) => postsJsonData.data.children.map((post) => ({
+  id: post.data.id,
+  title: post.data.title,
+  description: post.data.selftext,
+  pictureTag: generatePictureTag(post.data),
+  subreddit: post.data.subreddit_name_prefixed,
+  author: post.data.author,
+  numberOfComments: post.data.num_comments,
+  commentsPermalink: post.data.permalink,
+  ups: post.data.ups,
+  downs: post.data.downs,
+  created: post.data.created_utc,
+}));
+
+const formatSubreddits = (subredditsJsonData) => subredditsJsonData.data.children.map((subreddit) => ({
+  id: subreddit,
+  name: subreddit.data.display_name_prefixed,
+  members: subreddit.data.subscribers,
+  image: subreddit.data.icon_img,
+}));
+
 export {
   getTheme,
   formatNumberToCommaSeparated,
   timeAgo,
   extractComments,
   generatePictureTag,
+  formatPosts,
+  formatSubreddits,
 };

@@ -1,6 +1,6 @@
 import { Post } from "components/Post/Post";
 
-const PostList = ({ posts, handleCommentsButtonClick }) => {
+const PostList = ({ posts = [], handleCommentsButtonClick }) => {
   return (
     <section className="container mx-auto p-4">
       {posts.length > 0 ? (
