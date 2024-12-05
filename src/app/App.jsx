@@ -25,19 +25,24 @@ function App() {
   const [comments, setComments] = useState(extractComments(mockComments));
   const [posts, setPosts] = useState([]);
   const [subreddits, setSubreddits] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-      const postsJsonData = await fetchJson('https://www.reddit.com/r/popular.json');
-      const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
+      setIsLoading(true);
 
-      if (postsJsonData) {
-        setPosts(formatPosts(postsJsonData));
-      }
+      // const postsJsonData = await fetchJson('https://www.reddit.com/r/popular.json');
+      // const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
 
-      if (subredditsJsonData) {
-        setSubreddits(formatSubreddits(subredditsJsonData));
-      }
+      // if (postsJsonData) {
+      //   setPosts(formatPosts(postsJsonData));
+      // }
+
+      // if (subredditsJsonData) {
+      //   setSubreddits(formatSubreddits(subredditsJsonData));
+      // }
+
+      setIsLoading(false);
     };
 
     fetchData();
@@ -70,7 +75,7 @@ function App() {
   };
 
   return (
-    <div className="bg-orange-400">
+    <div className="bg-orange-400 h-screen flex flex-col">
       {isShowComments && (
         <Comments
           isShowComments={isShowComments}
@@ -88,8 +93,13 @@ function App() {
           subreddits={subreddits}
           isDrawerOpen={isDrawerOpen}
           handleBurgerClick={handleBurgerClick}
+          isLoading={isLoading}
         />
-        <PostList posts={posts} handleCommentsButtonClick={handleCommentsButtonClick} />
+        <PostList
+          posts={posts}
+          handleCommentsButtonClick={handleCommentsButtonClick}
+          isLoading={isLoading}
+        />
       </div>
       <Footer />
     </div>

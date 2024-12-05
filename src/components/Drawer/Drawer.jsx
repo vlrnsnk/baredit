@@ -1,8 +1,9 @@
 import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
 import { Subreddit } from 'components/Subreddit/Subreddit';
 import { useEffect, useRef, useState } from 'react';
+import { ReactComponent as Spinner } from 'assets/spinner.svg';
 
-const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
+const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isDrawerOpen);
 
   const drawerRef = useRef(null);
@@ -69,12 +70,19 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
                 <CloseIcon />
               </button>
             </div>
-            <div className="flex flex-col h-full overflow-y-scroll bg-white py-6 shadow-xl md:bg-gray-200 dark:bg-gray-900 dark:text-gray-200 md:rounded-2xl md:me-4">
+            <div className="flex flex-col h-full overflow-y-scroll bg-gray-200 py-6 shadow-xl md:bg-gray-200 dark:bg-gray-900 dark:text-gray-200 md:rounded-2xl md:me-4">
               <div className="px-4 sm:px-6 md:-mt-2">
                 <h2 className="font-semibold text-3xl text-orange-500 ps-2 md:text-gray-900 dark:bg-gray-900 dark:text-gray-200">Subreddits</h2>
               </div>
               <div className="relative flex-1 mt-6 px-4 sm:px-6">
-                {subreddits.length > 0 ? (
+                {isLoading ? (
+                  <div className="flex gap-2 justify-center items-center">
+                    <Spinner />
+                    <p className="text-2xl">
+                      Loading...
+                    </p>
+                  </div>
+                ) : subreddits.length > 0 ? (
                   <ul>
                     {subreddits.map((subreddit, index) => (
                       <li key={index} className="mb-2">
@@ -82,8 +90,8 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick }) => {
                       </li>
                     ))}
                   </ul>
-                ) :(
-                  <p className="text-orange-500 text-4xl text-center mt-4">
+                ) : (
+                  <p className="text-2xl text-center mt-4">
                     There was an error fetching SubReddits
                   </p>
                 ) }
