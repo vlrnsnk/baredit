@@ -1,4 +1,4 @@
-const SearchBar = () => {
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <div className="flex flex-row justify-center">
       <input
@@ -6,8 +6,8 @@ const SearchBar = () => {
         type="text"
         placeholder="Search Reddit"
         name="search-field"
-        value=""
-        onChange={() => {}}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value) }
       />
     </div>
   );

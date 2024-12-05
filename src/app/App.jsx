@@ -26,6 +26,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingComments, setIsLoadingComments] = useState(true);
   const [lastLoadedCommentsPermalink, setLastLoadedCommentsPermalink] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,6 +119,8 @@ function App() {
         handleBurgerClick={handleBurgerClick}
         theme={theme}
         handleThemeSwitcherClick={changeTheme}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
       />
       <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
         <Drawer
