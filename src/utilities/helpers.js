@@ -67,21 +67,63 @@ const extractComments = (json) => {
 };
 
 const generatePictureTag = (jsonData) => {
-  const image = jsonData?.preview?.images?.[0] || jsonData.thumbnail;
+  // Helper function to clean URLs (replace &amp; with &)
+  const cleanUrl = (url) => url?.replace(/&amp;/g, '&');
 
-  if (image === 'default' || image === 'nsfw') {
+  // Function to get the first valid image with all sizes (from preview or media_metadata)
+  const getImageWithAllSizes = (jsonData) => {
+    // Check if preview exists and apply cleanUrl to the preview image URLs
+    const previewImage = jsonData?.preview?.images?.[0];
+
+    if (previewImage) {
+      // If preview exists, return the imageUrl and resolutions with cleaned URLs
+      const imageUrl = cleanUrl(previewImage.source?.url);
+      const resolutions = previewImage.resolutions?.map(res => ({
+        url: cleanUrl(res.url), // Clean each resolution URL
+        width: res.width
+      })) || [];
+
+      // If resolutions exist in preview, return them, otherwise fallback
+      if (resolutions.length > 0) {
+        return { imageUrl, resolutions };
+      }
+    }
+
+    // If no valid preview, check media_metadata
+    const mediaMetadata = jsonData?.media_metadata;
+
+    if (mediaMetadata) {
+      // Iterate through media_metadata and find the first valid image with sizes
+      for (let key of Object.keys(mediaMetadata)) {
+        const metadata = mediaMetadata[key];
+        if (metadata.status === 'valid' && metadata.p && metadata.p.length > 0) {
+          const imageUrl = cleanUrl(metadata.p[0]?.u); // Use the first URL from the p array
+          const resolutions = metadata.p.map((img) => ({
+            url: cleanUrl(img.u), // Clean each resolution URL
+            width: img.x
+          }));
+          return { imageUrl, resolutions };
+        }
+      }
+    }
+
+    // Return empty if no valid image found in either preview or media_metadata
+    return { imageUrl: '', resolutions: [] };
+  };
+
+  // Get the image with all sizes, either from preview or media_metadata
+  const { imageUrl, resolutions } = getImageWithAllSizes(jsonData);
+
+  // If no valid image or resolutions found, return empty
+  if (!imageUrl || imageUrl === 'default' || imageUrl === 'nsfw') {
     return '';
   }
 
-  const allResolutions = image.resolutions || [];
-  const resolutions = allResolutions.filter(res => res.width >= 320);
-
-  // If no valid resolutions, return the img tag directly
+  // If there are no resolutions (either from preview or media_metadata), just return a regular <img> tag
   if (resolutions.length === 0) {
-    return <img className="rounded-xl border border-orange-400" src={jsonData.thumbnail} alt={jsonData.title} loading="lazy" />;
+    return <img className="rounded-xl border border-orange-400" src={imageUrl} alt={jsonData.title} loading="lazy" />;
   }
 
-  // Render the picture tag with JSX
   return (
     <picture>
       {/* Large screens and desktops (min-width: 992px) */}
@@ -89,7 +131,7 @@ const generatePictureTag = (jsonData) => {
         media="(min-width: 992px)"
         type="image/jpeg"
         srcSet={resolutions.filter(res => res.width >= 992)
-          .map(res => `${res.url.replace(/&amp;/g, '&')} ${res.width}w`)
+          .map(res => `${res.url} ${res.width}w`)
           .join(', ')}
       />
 
@@ -98,7 +140,7 @@ const generatePictureTag = (jsonData) => {
         media="(min-width: 768px)"
         type="image/jpeg"
         srcSet={resolutions.filter(res => res.width >= 768 && res.width < 992)
-          .map(res => `${res.url.replace(/&amp;/g, '&')} ${res.width}w`)
+          .map(res => `${res.url} ${res.width}w`)
           .join(', ')}
       />
 
@@ -106,12 +148,12 @@ const generatePictureTag = (jsonData) => {
       <source
         type="image/jpeg"
         srcSet={resolutions.filter(res => res.width < 768)
-          .map(res => `${res.url.replace(/&amp;/g, '&')} ${res.width}w`)
+          .map(res => `${res.url} ${res.width}w`)
           .join(', ')}
       />
 
       {/* Fallback img tag if no srcset matches */}
-      <img className="rounded-xl border border-orange-400" src={image.source?.url.replace(/&amp;/g, '&')} alt={jsonData.title} loading="lazy" />
+      <img className="rounded-xl border border-orange-400" src={imageUrl} alt={jsonData.title} loading="lazy" />
     </picture>
   );
 };
