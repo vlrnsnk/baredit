@@ -43,7 +43,7 @@ function App() {
 
   const handleCommentsButtonClick = (commentsPermalink) => {
     toggleCommentsVisibility();
-    setComments([comments[0]]);
+    // setComments([comments[0]]);
     console.log(commentsPermalink);
   };
 

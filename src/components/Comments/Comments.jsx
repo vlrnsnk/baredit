@@ -32,8 +32,8 @@ const Comments = ({ isShowComments, comments = [], handleCloseButtonClick }) => 
   return (
     <div className="relative z-10">
       <div className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isShowComments ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`}`}></div>
-      <div className="fixed inset-0 max-w-full m-4 bg-orange-400 rounded-2xl overflow-hidden">
-        <div className="relative max-w-md">
+      <div className="fixed inset-0 m-4 overflow-hidden">
+        <div className="relative max-w-4xl mx-auto bg-orange-400 rounded-2xl">
           <div className="absolute z-20 right-1 top-1">
             <button
               className="size-12 flex justify-center items-center focus:ring-2 focus:ring-gray-900 dark:focus:ring-orange-400 dark:text-orange-400 dark:hover:text-gray-200 rounded-full text-gray-200"
