@@ -6,8 +6,6 @@ import { Drawer } from 'components/Drawer/Drawer';
 import { PostList } from 'components/PostList/PostList';
 import { Footer } from 'components/Footer/Footer';
 
-import mockComments from 'mocks/mockComments.json';
-
 import {
   extractComments,
   getTheme,
@@ -22,25 +20,27 @@ function App() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState(getTheme());
   const [isShowComments, setIsShowComments] = useState(false);
-  const [comments, setComments] = useState(extractComments(mockComments));
+  const [comments, setComments] = useState([]);
   const [posts, setPosts] = useState([]);
   const [subreddits, setSubreddits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingComments, setIsLoadingComments] = useState(true);
+  const [lastLoadedCommentsPermalink, setLastLoadedCommentsPermalink] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
 
-      // const postsJsonData = await fetchJson('https://www.reddit.com/r/popular.json');
-      // const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
+      const postsJsonData = await fetchJson('https://www.reddit.com/r/popular.json');
+      const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
 
-      // if (postsJsonData) {
-      //   setPosts(formatPosts(postsJsonData));
-      // }
+      if (postsJsonData) {
+        setPosts(formatPosts(postsJsonData));
+      }
 
-      // if (subredditsJsonData) {
-      //   setSubreddits(formatSubreddits(subredditsJsonData));
-      // }
+      if (subredditsJsonData) {
+        setSubreddits(formatSubreddits(subredditsJsonData));
+      }
 
       setIsLoading(false);
     };
@@ -70,9 +70,26 @@ function App() {
     setIsShowComments(!isShowComments);
   };
 
-  const handleCommentsButtonClick = (commentsPermalink) => {
+  const fetchComments = async (url) => {
+    const commentsJsonData = await fetchJson(url);
+
+    if (commentsJsonData) {
+      setComments(extractComments(commentsJsonData));
+    }
+  };
+
+  const handleCommentsButtonClick = async (commentsPermalink) => {
+    setIsLoadingComments(true);
+
     toggleCommentsVisibility();
-    console.log(commentsPermalink);
+
+    if (commentsPermalink !== lastLoadedCommentsPermalink) {
+      setLastLoadedCommentsPermalink(commentsPermalink);
+
+      await fetchComments(`https://www.reddit.com${commentsPermalink}.json`);
+    }
+
+    setIsLoadingComments(false);
   };
 
   return (
@@ -82,6 +99,7 @@ function App() {
           isShowComments={isShowComments}
           comments={comments}
           handleCloseButtonClick={toggleCommentsVisibility}
+          isLoadingComments={isLoadingComments}
         />
       )}
       <Header

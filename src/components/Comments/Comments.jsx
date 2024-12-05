@@ -1,8 +1,9 @@
 import { Comment } from "components/Comment/Comment";
 import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
+import { ReactComponent as Spinner } from 'assets/spinner.svg';
 import { useEffect, useState } from "react";
 
-const Comments = ({ isShowComments, comments = [], handleCloseButtonClick }) => {
+const Comments = ({ isShowComments, comments = [], handleCloseButtonClick, isLoadingComments }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isShowComments);
 
   useEffect(() => {
@@ -51,7 +52,14 @@ const Comments = ({ isShowComments, comments = [], handleCloseButtonClick }) => 
               <hr />
             </div>
             <div>
-              {comments.length > 0 ? (
+              {isLoadingComments ? (
+                <div className="mt-8 flex gap-2 justify-center items-center">
+                  <Spinner />
+                  <p className="text-2xl">
+                    Loading...
+                  </p>
+                </div>
+              ) : comments.length > 0 ? (
                 <ul>
                   {comments.map((comment, index) => (
                     <li key={index}>
@@ -60,7 +68,9 @@ const Comments = ({ isShowComments, comments = [], handleCloseButtonClick }) => 
                   ))}
                 </ul>
               ) : (
-                <p>No comments</p>
+                <p className="text-2xl text-center mt-4">
+                  No comments loaded
+                </p>
               )}
             </div>
           </div>
