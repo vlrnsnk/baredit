@@ -61,8 +61,9 @@ function App() {
   }
 
   const changeTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.theme = theme;
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.theme = newTheme;
   };
 
   const toggleCommentsVisibility = () => {
