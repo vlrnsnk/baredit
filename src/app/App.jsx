@@ -140,20 +140,22 @@ function App() {
         setSearchQuery={setSearchQuery}
         handleSearchFormSubmit={handleSearchFormSubmit}
       />
-      <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
-        <Drawer
-          subreddits={subreddits}
-          isDrawerOpen={isDrawerOpen}
-          handleBurgerClick={handleBurgerClick}
-          isLoading={isLoading}
-          handleSubredditClick={handleSubredditClick}
-        />
-        <PostList
-          posts={posts}
-          handleCommentsButtonClick={handleCommentsButtonClick}
-          isLoading={isLoading}
-        />
-        <ScrollToTopButton />
+      <div className="bg-orange-400">
+        <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
+          <Drawer
+            subreddits={subreddits}
+            isDrawerOpen={isDrawerOpen}
+            handleBurgerClick={handleBurgerClick}
+            isLoading={isLoading}
+            handleSubredditClick={handleSubredditClick}
+          />
+          <PostList
+            posts={posts}
+            handleCommentsButtonClick={handleCommentsButtonClick}
+            isLoading={isLoading}
+          />
+          <ScrollToTopButton />
+      </div>
       </div>
       <Footer />
     </div>
