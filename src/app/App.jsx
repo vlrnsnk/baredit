@@ -9,7 +9,7 @@ import mockPosts from 'mocks/mockPosts.json';
 import mockSubreddits from 'mocks/mockSubreddits.json';
 import mockComments from 'mocks/mockComments.json';
 
-import { extractComments, getTheme } from 'utilities/helpers';
+import { extractComments, getTheme, generatePictureTag } from 'utilities/helpers';
 
 import './App.css';
 import { Comments } from 'components/Comments/Comments';
@@ -51,8 +51,7 @@ function App() {
     id: post.data.id,
     title: post.data.title,
     description: post.data.selftext,
-    // thumbnail: post.data.url,
-    thumbnail: post.data.thumbnail,
+    pictureTag: generatePictureTag(post.data),
     subreddit: post.data.subreddit_name_prefixed,
     author: post.data.author,
     numberOfComments: post.data.num_comments,

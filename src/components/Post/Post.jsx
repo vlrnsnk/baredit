@@ -12,13 +12,7 @@ const Post = ({ post, handleCommentsButtonClick }) => {
     <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 rounded-2xl mb-4 break-words">
       <h3 className="text-3xl font-bold">{post.title}</h3>
       <p>{post.description}</p>
-      {post.thumbnail && (
-        <img
-          className="rounded-xl border border-orange-400"
-          src={post.thumbnail}
-          alt={post.title}
-        />
-      )}
+      {post.pictureTag}
       <div className="flex flex-wrap gap-4 justify-between sm:justify-evenly">
         <p className="flex gap-2">
           <UserIcon className="text-orange-400" />
