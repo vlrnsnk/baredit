@@ -4,6 +4,7 @@ import { Comments } from 'components/Comments/Comments';
 import { Header } from 'components/Header/Header';
 import { Drawer } from 'components/Drawer/Drawer';
 import { PostList } from 'components/PostList/PostList';
+import { ScrollToTopButton } from 'components/ScrollToTopButton/ScrollToTopButton';
 import { Footer } from 'components/Footer/Footer';
 
 import {
@@ -152,6 +153,7 @@ function App() {
           handleCommentsButtonClick={handleCommentsButtonClick}
           isLoading={isLoading}
         />
+        <ScrollToTopButton />
       </div>
       <Footer />
     </div>
