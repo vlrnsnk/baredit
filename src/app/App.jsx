@@ -105,6 +105,22 @@ function App() {
     setIsLoading(false);
   };
 
+  const handleSearchFormSubmit = async (e) => {
+    e.preventDefault();
+
+    setIsLoading(true);
+
+    const postsJsonData = await fetchJson(
+      `https://www.reddit.com/search.json?q=${encodeURIComponent(searchQuery)}`
+    );
+
+    if (postsJsonData) {
+      setPosts(formatPosts(postsJsonData));
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <div className="bg-orange-400 h-screen flex flex-col">
       {isShowComments && (
@@ -121,6 +137,7 @@ function App() {
         handleThemeSwitcherClick={changeTheme}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        handleSearchFormSubmit={handleSearchFormSubmit}
       />
       <div className="md:flex md:flex-row-reverse md:container md:mx-auto">
         <Drawer
