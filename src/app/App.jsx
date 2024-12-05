@@ -92,6 +92,18 @@ function App() {
     setIsLoadingComments(false);
   };
 
+  const handleSubredditClick = async (subredditName) => {
+    setIsLoading(true);
+
+    const postsJsonData = await fetchJson(`https://www.reddit.com/${subredditName}.json`);
+
+    if (postsJsonData) {
+      setPosts(formatPosts(postsJsonData));
+    }
+
+    setIsLoading(false);
+  };
+
   return (
     <div className="bg-orange-400 h-screen flex flex-col">
       {isShowComments && (
@@ -113,6 +125,7 @@ function App() {
           isDrawerOpen={isDrawerOpen}
           handleBurgerClick={handleBurgerClick}
           isLoading={isLoading}
+          handleSubredditClick={handleSubredditClick}
         />
         <PostList
           posts={posts}

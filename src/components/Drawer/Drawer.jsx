@@ -3,7 +3,7 @@ import { Subreddit } from 'components/Subreddit/Subreddit';
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Spinner } from 'assets/spinner.svg';
 
-const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading }) => {
+const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading, handleSubredditClick }) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isDrawerOpen);
 
   const drawerRef = useRef(null);
@@ -86,7 +86,7 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading })
                   <ul>
                     {subreddits.map((subreddit, index) => (
                       <li key={index} className="mb-2">
-                        <Subreddit subreddit={subreddit} />
+                        <Subreddit subreddit={subreddit} handleSubredditClick={handleSubredditClick} />
                       </li>
                     ))}
                   </ul>
