@@ -44,7 +44,7 @@ const Comments = ({ isShowComments, comments = [], handleCloseButtonClick, isLoa
               <CloseIcon className="size-10" />
             </button>
           </div>
-          <div className="h-screen overflow-y-auto shadow-xl dark:bg-gray-900 dark:text-gray-200">
+          <div className="h-screen overflow-y-auto shadow-xl dark:bg-gray-900 dark:text-gray-200 rounded-2xl">
             <div className="px-4">
               <h2 className="font-semibold text-3xl py-3 text-gray-900 dark:text-orange-400">
                 Comments
