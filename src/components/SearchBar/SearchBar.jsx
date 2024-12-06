@@ -1,4 +1,8 @@
-const SearchBar = ({ searchQuery, setSearchQuery, handleSearchFormSubmit }) => {
+const SearchBar = ({
+  searchQuery,
+  setSearchQuery,
+  handleSearchFormSubmit,
+}) => {
   return (
     <div className="flex flex-row justify-center">
       <form onSubmit={(e) => handleSearchFormSubmit(e)}>

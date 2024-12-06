@@ -8,7 +8,10 @@ import { ReactComponent as Slash } from 'assets/slash.svg';
 import { timeAgo } from 'utilities/helpers';
 import { useState } from 'react';
 
-const Post = ({ post, handleCommentsButtonClick }) => {
+const Post = ({
+  post,
+  handleCommentsButtonClick,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleDescription = () => {
@@ -51,7 +54,6 @@ const Post = ({ post, handleCommentsButtonClick }) => {
           <Slash className="text-orange-400" />
           {post.subreddit}
         </p>
-        {/* <p>comments permalink {post.commentsPermalink}</p> */}
         <p className="flex gap-2">
           <Clock className="text-orange-400" />
           {timeAgo(post.created)}

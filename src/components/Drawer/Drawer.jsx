@@ -3,11 +3,16 @@ import { Subreddit } from 'components/Subreddit/Subreddit';
 import { useEffect, useRef, useState } from 'react';
 import { ReactComponent as Spinner } from 'assets/spinner.svg';
 
-const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading, handleSubredditClick }) => {
+const Drawer = ({
+  subreddits = [],
+  isDrawerOpen,
+  handleBurgerClick,
+  isLoading,
+  handleSubredditClick,
+}) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isDrawerOpen);
 
   const drawerRef = useRef(null);
-  const overlayRef = useRef(null);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -16,25 +21,10 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading, h
       }
     };
 
-    // const handleClickOutside = (e) => {
-    //   if (
-    //     // drawerRef.current
-    //     // && !drawerRef.current.contains(e.target)
-    //     //&&
-    //     isDrawerOpen
-    //     // && !overlayRef
-    //     // && overlayRef.current.contains(e.target)
-    //   ) {
-    //     handleBurgerClick();
-    //   }
-    // };
-
     window.addEventListener('keydown', handleKeyDown);
-    // window.addEventListener('click', handleClickOutside);
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
-      // window.removeEventListener('click', handleClickOutside);
     };
   }, [isDrawerOpen, handleBurgerClick]);
 
@@ -52,7 +42,6 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading, h
     <div className="relative z-20 md:z-0">
       <div
         className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isDrawerOpen ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`} md:hidden`}
-        ref={overlayRef}
       ></div>
       <div
         className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:translate-x-0 md:relative`}
@@ -86,7 +75,10 @@ const Drawer = ({ subreddits = [], isDrawerOpen, handleBurgerClick, isLoading, h
                   <ul>
                     {subreddits.map((subreddit, index) => (
                       <li key={index} className="mb-2">
-                        <Subreddit subreddit={subreddit} handleSubredditClick={handleSubredditClick} />
+                        <Subreddit
+                          subreddit={subreddit}
+                          handleSubredditClick={handleSubredditClick}
+                        />
                       </li>
                     ))}
                   </ul>

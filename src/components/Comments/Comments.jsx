@@ -3,7 +3,12 @@ import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
 import { ReactComponent as Spinner } from 'assets/spinner.svg';
 import { useEffect, useState } from "react";
 
-const Comments = ({ isShowComments, comments = [], handleCloseButtonClick, isLoadingComments }) => {
+const Comments = ({
+  isShowComments,
+  comments = [],
+  handleCloseButtonClick,
+  isLoadingComments,
+}) => {
   const [isOverlayVisible, setIsOverlayVisible] = useState(isShowComments);
 
   useEffect(() => {
