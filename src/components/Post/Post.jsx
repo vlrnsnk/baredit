@@ -26,19 +26,19 @@ const Post = ({ post, handleCommentsButtonClick }) => {
 
 
   return (
-    <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 rounded-2xl mb-4 break-words">
+    <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 md:p-6 lg:p-8 xl:p-10 rounded-2xl mb-4 break-words">
       <h3 className="text-3xl font-bold">{post.title}</h3>
-      <p className={`transition-all duration-500 ease-in-out ${isExpanded ? `max-h-full` : `max-h-[${MAX_LENGTH}px]`} overflow-hidden`}>
+      <p className={`transition-all duration-500 ease-in-out ${isExpanded ? `max-h-full` : `max-h-[${MAX_LENGTH}px]`} overflow-hidden md:text-lg md:leading-relaxed md:indent-5 lg:indent-7 lg:text-xl xl:leading-loose`}>
         {displayDescription}
       </p>
       {post.description && post.description.length > MAX_LENGTH && (
           <p>
             <button
-            className="mt-2 dark:text-orange-400 hover:underline focus:outline-none"
-            onClick={toggleDescription}
-          >
-            {isExpanded ? 'Show less' : 'Read more'}
-          </button>
+              className="mt-2 text-orange-400 hover:underline focus:outline-none md:text-lg lg:text-xl"
+              onClick={toggleDescription}
+            >
+              {isExpanded ? 'Show less' : 'Read more'}
+            </button>
           </p>
         )}
       {post.pictureTag}
