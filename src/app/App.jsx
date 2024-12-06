@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { useSelector, useDispatch } from 'react-redux';
+
 import { Comments } from 'components/Comments/Comments';
 import { Header } from 'components/Header/Header';
 import { Drawer } from 'components/Drawer/Drawer';
@@ -8,28 +10,61 @@ import { ScrollToTopButton } from 'components/ScrollToTopButton/ScrollToTopButto
 import { Footer } from 'components/Footer/Footer';
 
 import {
+  setLoading as setRedditPostsLoading,
+  setPosts,
+  setComments,
+  toggleComments,
+  setLoadingComments,
+  setLastLoadedCommentsPermalink,
+} from '../redux/slices/redditPostsSlice';
+
+import {
+  setSubreddits,
+  setLoading as setSubredditsLoading,
+} from '../redux/slices/subredditsSlice';
+
+import {
   extractComments,
   getTheme,
   formatPosts,
   formatSubreddits
 } from 'utilities/helpers';
+
 import { fetchJson } from 'utilities/redditJsonApi';
 
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
+
+  const {
+    posts,
+    isLoading: isLoadingPosts,
+    comments,
+    isShowComments,
+    isLoadingComments,
+    lastLoadedCommentsPermalink,
+  } = useSelector((state) => state.redditPosts);
+
+  const {
+    subreddits,
+    isLoading: isLoadingSubreddits,
+  } = useSelector((state) => state.subreddits);
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [theme, setTheme] = useState(getTheme());
-  const [isShowComments, setIsShowComments] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [subreddits, setSubreddits] = useState([]);
+  // const [isShowComments, setIsShowComments] = useState(false);
+  // const [comments, setComments] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  // const [subreddits, setSubreddits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingComments, setIsLoadingComments] = useState(true);
-  const [lastLoadedCommentsPermalink, setLastLoadedCommentsPermalink] = useState('');
+  // const [isLoadingComments, setIsLoadingComments] = useState(true);
+  // const [lastLoadedCommentsPermalink, setLastLoadedCommentsPermalink] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
+    dispatch(setRedditPostsLoading(true));
+
     const fetchData = async () => {
       setIsLoading(true);
 
@@ -37,18 +72,19 @@ function App() {
       const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
 
       if (postsJsonData) {
-        setPosts(formatPosts(postsJsonData));
+        dispatch(setPosts(formatPosts(postsJsonData)));
       }
 
       if (subredditsJsonData) {
-        setSubreddits(formatSubreddits(subredditsJsonData));
+        dispatch(setSubreddits(formatSubreddits(subredditsJsonData)));
       }
 
-      setIsLoading(false);
+      dispatch(setRedditPostsLoading(false));
+      dispatch(setSubredditsLoading(false));
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -59,7 +95,7 @@ function App() {
   }, [theme]);
 
   const handleBurgerClick = () => {
-    setIsDrawerOpen(!isDrawerOpen);
+    dispatch(toggleDrawer());
   }
 
   const changeTheme = () => {
@@ -69,29 +105,27 @@ function App() {
   };
 
   const toggleCommentsVisibility = () => {
-    setIsShowComments(!isShowComments);
+    dispatch(toggleComments());
   };
 
   const fetchComments = async (url) => {
     const commentsJsonData = await fetchJson(url);
 
     if (commentsJsonData) {
-      setComments(extractComments(commentsJsonData));
+      dispatch(setComments(extractComments(commentsJsonData)));
     }
   };
 
   const handleCommentsButtonClick = async (commentsPermalink) => {
-    setIsLoadingComments(true);
-
+    dispatch(setLoadingComments(true));
     toggleCommentsVisibility();
 
     if (commentsPermalink !== lastLoadedCommentsPermalink) {
-      setLastLoadedCommentsPermalink(commentsPermalink);
-
+      dispatch(setLastLoadedCommentsPermalink(commentsPermalink));
       await fetchComments(`https://www.reddit.com${commentsPermalink}.json`);
     }
 
-    setIsLoadingComments(false);
+    dispatch(setLoadingComments(false));
   };
 
   const handleSubredditClick = async (subredditName) => {
@@ -108,18 +142,17 @@ function App() {
 
   const handleSearchFormSubmit = async (e) => {
     e.preventDefault();
-
-    setIsLoading(true);
+    dispatch(setRedditPostsLoading(true));
 
     const postsJsonData = await fetchJson(
       `https://www.reddit.com/search.json?q=${encodeURIComponent(searchQuery)}`
     );
 
     if (postsJsonData) {
-      setPosts(formatPosts(postsJsonData));
+      dispatch(setPosts(formatPosts(postsJsonData)));
     }
 
-    setIsLoading(false);
+    dispatch(setRedditPostsLoading(false));
   };
 
   return (
@@ -137,7 +170,7 @@ function App() {
         theme={theme}
         handleThemeSwitcherClick={changeTheme}
         searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
+        setSearchQuery={(query) => dispatch(setSearchQuery(query))}
         handleSearchFormSubmit={handleSearchFormSubmit}
       />
       <div className="bg-orange-400">
@@ -146,13 +179,13 @@ function App() {
             subreddits={subreddits}
             isDrawerOpen={isDrawerOpen}
             handleBurgerClick={handleBurgerClick}
-            isLoading={isLoading}
+            isLoading={isLoadingSubreddits}
             handleSubredditClick={handleSubredditClick}
           />
           <PostList
             posts={posts}
             handleCommentsButtonClick={handleCommentsButtonClick}
-            isLoading={isLoading}
+            isLoading={isLoadingPosts}
           />
           <ScrollToTopButton />
       </div>
