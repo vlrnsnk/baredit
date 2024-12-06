@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -8,6 +8,8 @@ import { Drawer } from 'components/Drawer/Drawer';
 import { PostList } from 'components/PostList/PostList';
 import { ScrollToTopButton } from 'components/ScrollToTopButton/ScrollToTopButton';
 import { Footer } from 'components/Footer/Footer';
+
+import { setTheme, toggleDrawer, setSearchQuery } from '../redux/slices/appSlice';
 
 import {
   setLoading as setRedditPostsLoading,
@@ -25,7 +27,6 @@ import {
 
 import {
   extractComments,
-  getTheme,
   formatPosts,
   formatSubreddits
 } from 'utilities/helpers';
@@ -36,6 +37,8 @@ import './App.css';
 
 function App() {
   const dispatch = useDispatch();
+
+  const { theme, isDrawerOpen, searchQuery } = useSelector((state) => state.app);
 
   const {
     posts,
@@ -51,22 +54,12 @@ function App() {
     isLoading: isLoadingSubreddits,
   } = useSelector((state) => state.subreddits);
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [theme, setTheme] = useState(getTheme());
-  // const [isShowComments, setIsShowComments] = useState(false);
-  // const [comments, setComments] = useState([]);
-  // const [posts, setPosts] = useState([]);
-  // const [subreddits, setSubreddits] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  // const [isLoadingComments, setIsLoadingComments] = useState(true);
-  // const [lastLoadedCommentsPermalink, setLastLoadedCommentsPermalink] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
-
   useEffect(() => {
     dispatch(setRedditPostsLoading(true));
 
     const fetchData = async () => {
-      setIsLoading(true);
+      dispatch(setRedditPostsLoading(true));
+      dispatch(setSubredditsLoading(true));
 
       const postsJsonData = await fetchJson('https://www.reddit.com/r/popular.json');
       const subredditsJsonData = await fetchJson('https://www.reddit.com/subreddits.json');
@@ -100,7 +93,7 @@ function App() {
 
   const changeTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
+    dispatch(setTheme(newTheme));
     localStorage.theme = newTheme;
   };
 
@@ -129,15 +122,15 @@ function App() {
   };
 
   const handleSubredditClick = async (subredditName) => {
-    setIsLoading(true);
+    dispatch(setRedditPostsLoading(true));
 
     const postsJsonData = await fetchJson(`https://www.reddit.com/${subredditName}.json`);
 
     if (postsJsonData) {
-      setPosts(formatPosts(postsJsonData));
+      dispatch(setPosts(formatPosts(postsJsonData)));
     }
 
-    setIsLoading(false);
+    dispatch(setRedditPostsLoading(false));
   };
 
   const handleSearchFormSubmit = async (e) => {
