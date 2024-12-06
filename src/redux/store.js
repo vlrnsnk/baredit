@@ -10,6 +10,15 @@ const store = configureStore({
     redditPosts: redditPostsReducer,
     subreddits: subredditsReducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['redditPosts/setPosts'],
+        ignoredPaths: ['redditPosts.posts.pictureTag'],
+      },
+    }
+  ),
 });
 
 export { store };
