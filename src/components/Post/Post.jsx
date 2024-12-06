@@ -6,12 +6,41 @@ import { ReactComponent as Clock } from 'assets/clock.svg';
 import { ReactComponent as Slash } from 'assets/slash.svg';
 
 import { timeAgo } from 'utilities/helpers';
+import { useState } from 'react';
 
 const Post = ({ post, handleCommentsButtonClick }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleDescription = () => {
+    setIsExpanded(prevState => !prevState);
+  };
+
+  const MAX_LENGTH = 150;
+
+  const displayDescription =
+    post.description && post.description.length > MAX_LENGTH
+      ? isExpanded
+        ? post.description
+          : `${post.description.slice(0, MAX_LENGTH)}...`
+        : post.description;
+
+
   return (
     <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 rounded-2xl mb-4 break-words">
       <h3 className="text-3xl font-bold">{post.title}</h3>
-      <p>{post.description}</p>
+      <p className={`transition-all duration-500 ease-in-out ${isExpanded ? `max-h-full` : `max-h-[${MAX_LENGTH}px]`} overflow-hidden`}>
+        {displayDescription}
+      </p>
+      {post.description && post.description.length > MAX_LENGTH && (
+          <p>
+            <button
+            className="mt-2 dark:text-orange-400 hover:underline focus:outline-none"
+            onClick={toggleDescription}
+          >
+            {isExpanded ? 'Show less' : 'Read more'}
+          </button>
+          </p>
+        )}
       {post.pictureTag}
       <div className="flex flex-wrap gap-4 justify-between sm:justify-evenly">
         <p className="flex gap-2">
