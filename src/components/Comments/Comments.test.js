@@ -1,10 +1,6 @@
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { Comments } from "./Comments";
-import { Comment } from "components/Comment/Comment";
-import { ReactComponent as CloseIcon } from 'assets/x-mark.svg';
-import { ReactComponent as Spinner } from 'assets/spinner.svg';
 
 describe('Comments Component', () => {
   const mockHandleCloseButtonClick = jest.fn();
