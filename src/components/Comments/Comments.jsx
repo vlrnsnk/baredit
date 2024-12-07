@@ -37,7 +37,10 @@ const Comments = ({
 
   return (
     <div className="relative z-10">
-      <div className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isShowComments ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`}`}></div>
+      <div
+        className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isShowComments ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`}`}
+        role="presentation"
+      ></div>
       <div className="fixed inset-0 m-4 overflow-hidden">
         <div className="relative max-w-4xl mx-auto bg-orange-400 rounded-2xl">
           <div className="absolute z-20 right-1 top-1">
@@ -60,7 +63,10 @@ const Comments = ({
             <div>
               {isLoadingComments ? (
                 <div className="mt-8 flex gap-2 justify-center items-center">
-                  <Spinner className="animate-spin h-8 w-8 text-black dark:text-white" />
+                  <Spinner
+                    className="animate-spin h-8 w-8 text-black dark:text-white"
+                    data-testid="spinner"
+                  />
                   <p className="text-2xl">
                     Loading...
                   </p>

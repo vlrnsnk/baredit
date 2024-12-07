@@ -42,6 +42,7 @@ const Drawer = ({
     <div className="relative z-20 md:z-0">
       <div
         className={`fixed inset-0 bg-gray-200/75 transition-opacity ease-in-out duration-500 ${isDrawerOpen ? `opacity-100 visible` : `opacity-0`} ${isOverlayVisible ? `visible` : `invisible`} md:hidden`}
+        role="presentation"
       ></div>
       <div
         className={`fixed inset-0 overflow-hidden transform transition-transform ease-in-out duration-500 ${isDrawerOpen ? `translate-x-0` : `translate-x-full`} md:translate-x-0 md:relative`}
