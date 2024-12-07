@@ -29,7 +29,7 @@ const Post = ({
 
 
   return (
-    <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 md:p-6 lg:p-8 xl:p-10 rounded-2xl mb-4 break-all">
+    <article className="flex flex-col gap-4 bg-gray-200 dark:bg-gray-900 dark:text-gray-200 p-4 md:p-6 lg:p-8 xl:p-10 rounded-2xl mb-4 break-words md:columns-10">
       <h3 className="text-3xl font-bold">{post.title}</h3>
       <p className={`transition-all duration-500 ease-in-out ${isExpanded ? `max-h-full` : `max-h-[${MAX_LENGTH}px]`} overflow-hidden md:text-lg md:leading-relaxed md:indent-5 lg:indent-7 lg:text-xl xl:leading-loose`}>
         {displayDescription}
