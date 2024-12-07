@@ -68,7 +68,10 @@ const Drawer = ({
               <div className="relative flex-1 mt-6 px-4 sm:px-6">
                 {isLoading ? (
                   <div className="flex gap-2 justify-center items-center">
-                    <Spinner className="animate-spin h-8 w-8 text-black dark:text-gray-200" />
+                    <Spinner
+                      className="animate-spin h-8 w-8 text-black dark:text-gray-200"
+                      data-testid="spinner"
+                    />
                     <p className="text-2xl">
                       Loading...
                     </p>

@@ -88,10 +88,7 @@ describe('Comments Component', () => {
       />
     );
 
-    // eslint-disable-next-line testing-library/no-unnecessary-act
-    await act(async () => {
-      fireEvent.keyDown(window, { key: 'Escape' });
-    });
+    fireEvent.keyDown(window, { key: 'Escape', code: 'Escape' });
 
     expect(mockHandleCloseButtonClick).toHaveBeenCalledTimes(1);
   });

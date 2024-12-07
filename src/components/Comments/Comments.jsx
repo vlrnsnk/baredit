@@ -13,7 +13,7 @@ const Comments = ({
 
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Esc' && isShowComments) {
+      if (e.key === 'Escape' && isShowComments) {
         handleCloseButtonClick();
       }
     };
