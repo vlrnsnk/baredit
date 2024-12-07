@@ -10,7 +10,7 @@ const PostList = ({
     return (
       <section className="container mx-auto p-4 flex gap-2 justify-center items-center">
         <p>
-          <Spinner />
+          <Spinner className="animate-spin h-8 w-8 text-black" />
         </p>
         <p className="pt-auto text-center text-4xl">
           Loading...

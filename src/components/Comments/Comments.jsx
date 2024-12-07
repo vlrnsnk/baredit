@@ -59,7 +59,7 @@ const Comments = ({
             <div>
               {isLoadingComments ? (
                 <div className="mt-8 flex gap-2 justify-center items-center">
-                  <Spinner />
+                  <Spinner className="animate-spin h-8 w-8 text-black dark:text-white" />
                   <p className="text-2xl">
                     Loading...
                   </p>
