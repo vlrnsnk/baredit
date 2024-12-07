@@ -122,6 +122,10 @@ function App() {
   };
 
   const handleSubredditClick = async (subredditName) => {
+    if (isDrawerOpen) {
+      dispatch(handleBurgerClick);
+    }
+
     dispatch(setRedditPostsLoading(true));
 
     const postsJsonData = await fetchJson(`https://www.reddit.com/${subredditName}.json`);
