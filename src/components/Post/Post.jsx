@@ -39,6 +39,7 @@ const Post = ({
             <button
               className="mt-2 text-orange-400 hover:underline focus:outline-none md:text-lg lg:text-xl"
               onClick={toggleDescription}
+              aria-label={isExpanded ? 'Show less' : 'Read more'}
             >
               {isExpanded ? 'Show less' : 'Read more'}
             </button>
@@ -75,6 +76,7 @@ const Post = ({
             className="text-orange-400 hover:cursor-pointer"
             type="button"
             onClick={() => handleCommentsButtonClick(post.commentsPermalink)}
+            aria-label="Open Comments"
           >
             <CommentsIcon className="hover:fill-orange-400" />
           </button>

@@ -9,6 +9,7 @@ const ThemeSwitcher = ({
     <button
       className="size-12 flex justify-center items-center hover:text-orange-400"
       onClick={handleThemeSwitcherClick}
+      aria-label="Change theme"
     >
       {theme === 'dark' ? (
         <Sun />

@@ -44,6 +44,7 @@ const Comments = ({
             <button
               className="size-12 flex justify-center items-center focus:ring-2 focus:ring-gray-900 dark:focus:ring-orange-400 dark:text-orange-400 dark:hover:text-gray-200 rounded-full text-gray-200"
               onClick={handleCloseButtonClick}
+              aria-label="Close Comments"
             >
               <span className="sr-only">Close Comments</span>
               <CloseIcon className="size-10" />

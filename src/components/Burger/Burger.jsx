@@ -7,6 +7,7 @@ const Burger = ({ handleBurgerClick }) => {
         className="flex justify-center items-center size-12 cursor-pointer hover:text-orange-500"
         type="button"
         onClick={handleBurgerClick}
+        aria-label="Open Menu"
       >
         <BurgerIcon />
       </button>

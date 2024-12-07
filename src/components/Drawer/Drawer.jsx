@@ -54,6 +54,7 @@ const Drawer = ({
                 className="relative rounded-md hover:text-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500 size-10 flex justify-center items-center dark:text-gray-200"
                 type="button"
                 onClick={handleBurgerClick}
+                aria-label="Close Menu"
               >
                 <span className="sr-only">Close Drawer</span>
                 <CloseIcon />
