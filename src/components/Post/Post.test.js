@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Post } from "./Post";
-import { timeAgo } from "utilities/helpers";
 
 jest.mock('utilities/helpers.js', () => ({
   timeAgo: jest.fn().mockReturnValue('2 hours ago'),
