@@ -1,8 +1,6 @@
 import '@testing-library/jest-dom';
 import { screen, render, fireEvent } from "@testing-library/react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import { ReactComponent as Moon } from 'assets/moon.svg';
-import { ReactComponent as Sun } from 'assets/sun.svg';
 
 jest.mock('assets/moon.svg', () => ({
   ReactComponent: () => <svg data-testid="moon-icon" />,
