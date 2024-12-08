@@ -19,7 +19,10 @@ const Subreddit = ({
             alt={`${subreddit.name} logo`}
           />
         ) : (
-          <DefaultIcon className="size-12" />
+          <DefaultIcon
+            className="size-12"
+            data-testid="default-icon"
+          />
         )}
       </div>
       <div className="flex flex-col">
