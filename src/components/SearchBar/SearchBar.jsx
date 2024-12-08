@@ -5,7 +5,11 @@ const SearchBar = ({
 }) => {
   return (
     <div className="flex flex-row justify-center">
-      <form onSubmit={(e) => handleSearchFormSubmit(e)}>
+      {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
+      <form
+        onSubmit={(e) => handleSearchFormSubmit(e)}
+        role="form"
+      >
         <input
           className="px-4 py-2 self-center rounded-full dark:bg-gray-200 text-gray-900 outline-orange-400"
           type="text"
