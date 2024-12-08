@@ -1,5 +1,4 @@
 import appReducer, { setTheme, toggleDrawer, setSearchQuery } from './appSlice';
-import { getTheme } from 'utilities/helpers';
 
 jest.mock('utilities/helpers', () => ({
   getTheme: jest.fn().mockReturnValue('light'),
