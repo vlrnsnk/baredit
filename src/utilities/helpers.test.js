@@ -120,39 +120,39 @@ describe('Utility functions', () => {
       expect(generatePictureTag(jsonData)).toBe('');
     });
 
-    // it('should generate an <img> tag if no resolutions are found', () => {
-    //   const jsonData = { title: 'Test', preview: { images: [{ source: { url: 'image.jpg' } }] } };
-    //   const result = generatePictureTag(jsonData);
-    //   console.log(result);
+    it('should generate an <img> tag if no resolutions are found', () => {
+      const jsonData = { title: 'Test', preview: { images: [{ source: { url: 'image.jpg' } }] } };
+      const result = generatePictureTag(jsonData);
+      console.log(result);
 
-    //   expect(result).toContain('<img class="rounded-xl border border-orange-400"');
-    //   expect(result).toContain('src="image.jpg"');
-    // });
+      expect(result).toContain('<img class="rounded-xl border border-orange-400"');
+      expect(result).toContain('src="image.jpg"');
+    });
 
-    // it('should generate a <picture> tag with <source> for different resolutions', () => {
-    //   const jsonData = {
-    //     title: 'Test',
-    //     preview: {
-    //       images: [
-    //         {
-    //           source: { url: 'image.jpg' },
-    //           resolutions: [
-    //             { url: 'small.jpg', width: 600 },
-    //             { url: 'medium.jpg', width: 800 },
-    //             { url: 'large.jpg', width: 1200 },
-    //           ],
-    //         },
-    //       ],
-    //     },
-    //   };
+    it('should generate a <picture> tag with <source> for different resolutions', () => {
+      const jsonData = {
+        title: 'Test',
+        preview: {
+          images: [
+            {
+              source: { url: 'image.jpg' },
+              resolutions: [
+                { url: 'small.jpg', width: 600 },
+                { url: 'medium.jpg', width: 800 },
+                { url: 'large.jpg', width: 1200 },
+              ],
+            },
+          ],
+        },
+      };
 
-    //   const result = generatePictureTag(jsonData);
+      const result = generatePictureTag(jsonData);
 
-    //   expect(result).toContain('<picture>');
-    //   expect(result).toContain('<source media="(min-width: 992px)"');
-    //   expect(result).toContain('srcSet="large.jpg 1200w, medium.jpg 800w, small.jpg 600w"');
-    //   expect(result).toContain('<img class="rounded-xl border border-orange-400"');
-    // });
+      expect(result).toContain('<picture>');
+      expect(result).toContain('<source media="(min-width: 992px)"');
+      expect(result).toContain('srcSet="large.jpg 1200w, medium.jpg 800w, small.jpg 600w"');
+      expect(result).toContain('<img class="rounded-xl border border-orange-400"');
+    });
 
     it('should return empty if image url is "default" or "nsfw"', () => {
       const jsonData = {
