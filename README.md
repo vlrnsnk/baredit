@@ -6,6 +6,7 @@ BareDit (Bare Reddit) is a web application that allows users to browse Reddit po
 
 - [Features](#features)
 - [Demo](#demo)
+- [Screenshot](#screenshot)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -28,6 +29,10 @@ BareDit (Bare Reddit) is a web application that allows users to browse Reddit po
 ## Demo
 
 Check out the live demo of the app at [https://baredit.netlify.app/](https://baredit.netlify.app/).
+
+## Screenshot
+
+![BareDit App](https://i.imgur.com/FMeHa1q.png)
 
 ## Technologies Used
 
