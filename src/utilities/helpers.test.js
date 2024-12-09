@@ -112,4 +112,111 @@ describe('Utility functions', () => {
       expect(extractComments(json)).toEqual([]);
     });
   });
+
+  describe('generatePictureTag', () => {
+    it('should return an empty string if no valid image is found', () => {
+      const jsonData = {};
+
+      expect(generatePictureTag(jsonData)).toBe('');
+    });
+
+    // it('should generate an <img> tag if no resolutions are found', () => {
+    //   const jsonData = { title: 'Test', preview: { images: [{ source: { url: 'image.jpg' } }] } };
+    //   const result = generatePictureTag(jsonData);
+    //   console.log(result);
+
+    //   expect(result).toContain('<img class="rounded-xl border border-orange-400"');
+    //   expect(result).toContain('src="image.jpg"');
+    // });
+
+    // it('should generate a <picture> tag with <source> for different resolutions', () => {
+    //   const jsonData = {
+    //     title: 'Test',
+    //     preview: {
+    //       images: [
+    //         {
+    //           source: { url: 'image.jpg' },
+    //           resolutions: [
+    //             { url: 'small.jpg', width: 600 },
+    //             { url: 'medium.jpg', width: 800 },
+    //             { url: 'large.jpg', width: 1200 },
+    //           ],
+    //         },
+    //       ],
+    //     },
+    //   };
+
+    //   const result = generatePictureTag(jsonData);
+
+    //   expect(result).toContain('<picture>');
+    //   expect(result).toContain('<source media="(min-width: 992px)"');
+    //   expect(result).toContain('srcSet="large.jpg 1200w, medium.jpg 800w, small.jpg 600w"');
+    //   expect(result).toContain('<img class="rounded-xl border border-orange-400"');
+    // });
+
+    it('should return empty if image url is "default" or "nsfw"', () => {
+      const jsonData = {
+        title: 'Test',
+        preview: {
+          images: [{ source: { url: 'default' } }],
+        },
+      };
+
+      expect(generatePictureTag(jsonData)).toBe('');
+    });
+  });
+
+  describe('formatPosts', () => {
+    it('should correctly format post data', () => {
+      const postsJsonData = {
+        data: {
+          children: [
+            {
+              data: {
+                id: 'post1',
+                title: 'Post Title',
+                selftext: 'Description of post',
+                subreddit_name_prefixed: 'r/test',
+                author: 'author1',
+                num_comments: 10,
+                permalink: '/r/test/comments/post1',
+                ups: 100,
+                downs: 20,
+                created_utc: 1618560000,
+              },
+            },
+          ],
+        },
+      };
+
+      const formattedPosts = formatPosts(postsJsonData);
+
+      expect(formattedPosts[0].id).toBe('post1');
+      expect(formattedPosts[0].title).toBe('Post Title');
+    });
+  });
+
+  describe('formatSubreddits', () => {
+    it('should correctly format subreddit data', () => {
+      const subredditsJsonData = {
+        data: {
+          children: [
+            {
+              data: {
+                display_name_prefixed: 'r/test',
+                subscribers: 100,
+                icon_img: 'icon.jpg',
+              },
+            },
+          ],
+        },
+      };
+
+      const formattedSubreddits = formatSubreddits(subredditsJsonData);
+
+      expect(formattedSubreddits[0].name).toBe('r/test');
+      expect(formattedSubreddits[0].members).toBe(100);
+      expect(formattedSubreddits[0].image).toBe('icon.jpg');
+    });
+  });
 });
