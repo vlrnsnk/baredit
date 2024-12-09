@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+# Build Your Own Reddit App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+BareDit (Bare Reddit) is a web application that allows users to browse Reddit posts, search through them, and view detailed comments, all powered by Reddit's public JSON API. The app utilizes React and Redux for its UI and state management, with a focus on responsive design, animations, and testing. The project will give users an enjoyable and seamless experience while browsing content from Reddit. The application is styled using **Tailwind CSS**, a utility-first CSS framework, for rapid and customizable UI development.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Demo](#demo)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Running Tests](#running-tests)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
+- [Contact](#contact)
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Browse Posts**: Users can view Reddit posts from different subreddits.
+- **Search Posts**: Users can search posts using keywords or phrases.
+- **Detailed View**: Users can view a detailed post along with comments in a modal.
+- **Responsive Design**: The app is fully responsive, offering an optimized experience on both desktop and mobile devices.
+- **Animations & Transitions**: Smooth animations for transitions and UI elements, enhancing user experience.
+- **Error Handling**: App gracefully handles error states (e.g., no posts found or API errors).
+- **Tailwind CSS**: Tailwind CSS is used for a customizable, utility-first approach to styling the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Demo
 
-### `npm test`
+Check out the live demo of the app at [https://baredit.netlify.app/](https://baredit.netlify.app/).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- **React**: JavaScript library for building the user interface.
+- **Redux**: State management for the application.
+- **Reddit JSON API**: Used to fetch posts, comments, subreddits from Reddit.
+- **Axios**: HTTP client for making requests to the Reddit API.
+- **Tailwind CSS**: Utility-first CSS framework used for styling the application.
+- **Jest**: Testing framework for unit and integration tests.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Follow these steps to set up the project locally:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/vlrnsnk/baredit.git
+   cd baredit
+   ```
 
-### `npm run eject`
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Start the development server**:
+   ```bash
+   npm start
+   ```
+   This will start the app and open it in your default browser at `http://localhost:3000`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Build the project**:
+   ```bash
+   npm run build
+   ```
+   This will create an optimized production build in the `build` directory.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Browse Posts**: Upon loading, users will see a list of posts from the Reddit API.
+- **Search**: Use the search bar to find posts based on keywords.
+- **Detailed View**: Click on any post to view detailed comments in a modal.
+- **Responsive Design**: The app is fully responsive and adapts to different screen sizes.
+- **Tailwind CSS**: The app leverages the utility-first Tailwind CSS classes to style components quickly and consistently.
 
-## Learn More
+## Running Tests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the tests using Jest, follow these steps:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Run unit tests**:
+   ```bash
+   npm test
+   ```
+   This will run all the unit tests in the project.
 
-### Code Splitting
+2. **Watch test changes**:
+   ```bash
+   npm run test:watch
+   ```
+   This will keep Jest running and automatically rerun tests when files are modified.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contributing
 
-### Analyzing the Bundle Size
+Contributions are welcome! If you have suggestions or improvements, feel free to fork the repository and submit a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. **Fork the repository**.
+2. **Create a new branch**: `git checkout -b feature/your-feature-name`
+3. **Commit your changes**: `git commit -am 'Add your changes'`
+4. **Push to your fork**: `git push origin feature/your-feature-name`
+5. **Open a pull request** to the main repository.
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-### Advanced Configuration
+## Acknowledgements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- [Create React App](https://reactjs.org/docs/create-a-new-react-app.html)
+- [Reddit API](https://www.reddit.com/dev/api/)
+- [Redux](https://redux.js.org/)
+- [Axios](https://axios-http.com/)
+- [Jest](https://jestjs.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-### Deployment
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Feel free to reach out to me with any questions or for collaborations.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Email**: [vlrnsnk\@proton.me](mailto:vlrnsnk@proton.me?subject=BareDit)
+- **LinkedIn**: [https://linkedin.com/in/vlrnsnk/](https://linkedin.com/in/vlrnsnk/)
+- **GitHub**: [https://github.com/vlrnsnk](https://github.com/vlrnsnk/)
